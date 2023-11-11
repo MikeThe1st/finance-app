@@ -6,6 +6,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Test/>} path="/"/>
+        {/* <Route element={<Contact/>} path="/contact"/> */}
       </Routes>
     </BrowserRouter>
   )

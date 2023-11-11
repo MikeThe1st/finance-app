@@ -1,4 +1,5 @@
 import React from 'react'
+import TestComponent from '../components/TestComponent.jsx'
 
 const Test = () => {
     return (
@@ -6,6 +7,7 @@ const Test = () => {
             <h1 className="text-3xl text-white font-bold underline">
                 Hello world!
             </h1>
+            <TestComponent/>
         </div>
     )
 }
