@@ -5,9 +5,7 @@ export const register = async (req, res) => {
     try {
         const { name, surname, email, password } = req.body
 
-        // Check if the username or email already exist in the database
         const existingUser = await User.findOne({ email } )
-
         if (existingUser) {
             if (existingUser.email === email) {
                 return res.status(409).json({ msg: `User with email: ${email} already exists. Please choose a different email.` })
@@ -18,9 +16,9 @@ export const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt)
 
         const newUser = new User({ name, surname, email, password: hashedPassword })
-        const savedUser = await newUser.save()
+        await newUser.save()
 
-        return res.status(201).json('Signup successful.')
+        return res.status(201).json('Account created.')
     } catch (error) {
         console.error('Registration failed:', error);
         return res.status(500).json({ error: 'Registration failed.' });
@@ -65,9 +63,9 @@ export const userVerification = async (req, res) => {
             return res.status(404).json({ error: 'Token not found.', status: false });
         }
 
-        const secretKey = process.env.JWT_SECRET;
+        const secretKey = process.env.JWT_SECRET
         if (!secretKey) {
-            return res.status(500).json({ error: 'JWT secret key is not configured.', status: false });
+            return res.status(500).json({ error: 'JWT secret key is not configured.', status: false })
         }
 
         const decoded = await jwt.verify(token, secretKey)

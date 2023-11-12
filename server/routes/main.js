@@ -2,7 +2,7 @@ import express from 'express'
 import { register, login, userVerification } from '../controllers/auth.js'
 import { newTransaction, getUser } from '../controllers/user.js'
 
-// import { allCompanies, selectedCompany, recomendedCompanies } from '../controllers/company'
+import { allCompanies, selectedCompany, recomendedCompanies } from '../controllers/company.js'
 
 const mainRouter = express.Router()
 
@@ -12,8 +12,8 @@ mainRouter.post('/user', getUser)
 mainRouter.get('/user/auth', userVerification)
 mainRouter.post('/user/new-transaction', newTransaction)
 
-// mainRouter.get('/companies', allCompanies)
-// mainRouter.get(`/company/:name`, selectedCompany)
-// mainRouter.get(`/companies/recommended`, recomendedCompanies)
+mainRouter.get('/companies', allCompanies)
+mainRouter.get(`/company`, selectedCompany)
+mainRouter.get(`/companies/recommended`, recomendedCompanies)
 
 export default mainRouter

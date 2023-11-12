@@ -16,12 +16,11 @@ const CompanySchema = new mongoose.Schema(
             phone: {type: String},
             email: {type: String}
         },
-        languages: [{type: String}],
         location: {
             country: {type: String},
             city: {type: String}
         },
-        recomended: {type: Boolean}
+        recommended: {type: Boolean},
     },
     { timestamps: true }
 );
