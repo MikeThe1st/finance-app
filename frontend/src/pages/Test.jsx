@@ -5,7 +5,7 @@ const Test = () => {
     return (
         <div>
             <h1 className="text-3xl text-white font-bold underline">
-                Hello world!
+                syzyf
             </h1>
             <TestComponent/>
         </div>
