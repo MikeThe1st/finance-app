@@ -1,7 +1,7 @@
-import User from "../models/User.js"
+
 import Company from "../models/Company.js"
 
-
+// DONE
 export const allCompanies = async (req, res) => {
     try {
         const companies = await Company.find({})
@@ -12,9 +12,10 @@ export const allCompanies = async (req, res) => {
     }
 }
 
+// DONE
 export const selectedCompany = async (req, res) => {
     try {
-        const {name} = req.body
+        const {name} = req.query
         const company = await Company.findOne({name: name})
         return res.status(200).json(company)
     } catch (error) {
@@ -23,9 +24,15 @@ export const selectedCompany = async (req, res) => {
     }
 }
 
+// DONE
 export const recomendedCompanies = async (req, res) => {
     try {
-        const recomendedCompanies = await Company.find({recomended: true})
+        const companiesWithRecommended = await Company.find({ recommended: { $exists: true } })
+        let recomendedCompanies = []
+        companiesWithRecommended.map((company) => {
+            if(company.recommended) recomendedCompanies.push(company)
+        })
+
         return res.status(200).json(recomendedCompanies)
     } catch (error) {
         console.error('Transaction not created: ', error);
