@@ -5,6 +5,8 @@ import ServicesInfo from './pages/ServicesInfo.jsx'
 import Contact from './pages/Contact.jsx'
 import RegisterForm from './pages/RegisterForm.jsx'
 import LoginForm from './pages/LoginForm.jsx'
+import CompanyForm from './pages/CompanyForm.jsx' 
+
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route element={<Contact/>} path="/contact"/>
         <Route element={<RegisterForm/>} path="/register"/>
         <Route element={<LoginForm/>} path="/login"/>
+        <Route element={<CompanyForm/>} path='/company-form'/>
+        
       </Routes>
     </BrowserRouter>
   )
