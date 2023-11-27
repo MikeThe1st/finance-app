@@ -27,7 +27,7 @@ const Navbar = () => {
                 <a href="/">Strona główna</a>
               </li>
               <li className="hover:text-green-600 font-bold text-2xl">
-                <a href="#">Znajdź Usługę</a>
+                <a href="/company-list">Znajdź Usługę</a>
               </li>
               <li className="hover:text-green-600 font-bold text-2xl">
                 <a href="/services-info">Usługi</a>
