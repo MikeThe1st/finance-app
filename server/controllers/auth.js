@@ -1,5 +1,7 @@
 import User from "../models/User.js"
 
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const register = async (req, res) => {
     try {
@@ -39,10 +41,9 @@ export const login = async (req, res) => {
         if (isPasswordCorrect) {
             console.log('Password matches. Login successful.')
             const secretKey = process.env.JWT_SECRET
-            const expiresIn = '1d'
-            const token = await jwt.sign(email, secretKey, {expiresIn})
-            res.cookie("token", token)
-            // res.cookie("token", token, { httpOnly: false, secure: true, path: '/', sameSite: 'none' })
+            const expires = '1d'
+            const token = await jwt.sign(email, secretKey)
+            res.cookie("token", token, { httpOnly: true, secure: true, path: '/', sameSite: 'none', expiresIn: expires });
             return res.status(200).json({ token, msg: 'Login success.' })
         }
         else {

@@ -3,21 +3,23 @@ import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cors from 'cors'
 import mainRouter from '../routes/main.js'
-// const mainRouter = require('../routes/main.ts')
+import cookieParser from 'cookie-parser'
 
 dotenv.config()
 const app = express()
 const appPort = process.env.APP_PORT || 3000
 const mongoURL = process.env.MONGOOSE_CONNECT
 
-const corsOptions = {
-  origin: 'http://localhost:5173/',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
-  credentials: true,
-}
-app.use(cors(corsOptions))
+// const corsOptions = {
+//   origin: 'http://localhost:5173',
+//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
+//   credentials: true,
+// }
+// app.use(cors(corsOptions))
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/backend', mainRouter)
 

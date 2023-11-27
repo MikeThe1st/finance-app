@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
+        name: '',
+        surname: '',
         email: '',
         password: '',
         repeatPassword: '',
@@ -16,19 +18,60 @@ const RegisterForm = () => {
     };
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log('Registration data:', formData);
+        console.log('Registration data:', formData)
+        
+        await axios.post('http://localhost:3000/backend/user/register', formData)
+        .then(response => {
+            console.log(response.data)
+        })
+        .catch(error => {
+            alert(error.response.data.msg)
+        })
 
         setFormData({
+            name: '',
+            surname: '',
             email: '',
             password: '',
             repeatPassword: '',
-        });
-    };
+        })
+    }
+
     return (
         <div>
             <form onSubmit={handleSubmit} className='max-w-screen-sm flex flex-col justify-center mx-auto p-10 bg-gray-600 rounded-lg my-20'>
+                <div className="mb-4">
+                    <label htmlFor="name" className="block text-gray-300 text-sm font-bold mb-2">
+                        Imię
+                    </label>
+                    <input
+                        type="name"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border rounded-md"
+                        required
+                        placeholder='imię'
+                    />
+                </div>
+                <div className="mb-4">
+                    <label htmlFor="surname" className="block text-gray-300 text-sm font-bold mb-2">
+                        Nazwisko
+                    </label>
+                    <input
+                        type="surname"
+                        id="surname"
+                        name="surname"
+                        value={formData.surname}
+                        onChange={handleChange}
+                        className="w-full px-3 py-2 border rounded-md"
+                        required
+                        placeholder='nazwisko'
+                    />
+                </div>
                 <div className="mb-4">
                     <label htmlFor="email" className="block text-gray-300 text-sm font-bold mb-2">
                         Email
@@ -56,7 +99,7 @@ const RegisterForm = () => {
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded-md"
                         required
-                        placeholder='haslo'
+                        placeholder='hasło'
                     />
                 </div>
                 <div className="mb-6">
@@ -71,7 +114,7 @@ const RegisterForm = () => {
                         onChange={handleChange}
                         className="w-full px-3 py-2 border rounded-md"
                         required
-                        placeholder='haslo'
+                        placeholder='hasło'
                     />
                 </div>
                 <button
