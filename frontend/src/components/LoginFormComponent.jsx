@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const LoginFormComponent = () => {
   const [formData, setFormData] = useState({
@@ -13,11 +14,17 @@ const LoginFormComponent = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your login logic here
-    console.log('Login data:', formData);
-    // Reset form after submission
+
+    await axios.post('http://localhost:3000/backend/user/login', formData, { withCredentials: true }).then(response => {
+      console.log(response.data)
+    })
+      .catch(error => {
+        // alert(error.response.data.msg)
+        console.log(error)
+      })
+
     setFormData({
       email: '',
       password: '',
