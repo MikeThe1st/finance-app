@@ -8,6 +8,7 @@ import LoginForm from './pages/LoginForm.jsx'
 import CompanyForm from './pages/CompanyForm.jsx' 
 import UserForm from './pages/UserForm.jsx' 
 import CompanyList from './pages/CompanyList.jsx'
+import CalendarForm from './pages/CalendarForm.jsx'
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route element={<UserForm/>} path='/user-form'/>
         <Route element={<CompanyForm/>} path='/company-form'/>
         <Route element={<CompanyList/>} path='/company-list'/>
+        <Route element={<CalendarForm/>} path='/calendar-form'/>
 
       </Routes>
     </BrowserRouter>
