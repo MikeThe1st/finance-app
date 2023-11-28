@@ -10,19 +10,19 @@ const TransactionHistory = ({ transactions }) => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '50vh',
+        height: '30vh',
         width: '40%',
         border: '2px solid #ccc',
         borderRadius: '10px',
         padding: '20px',
         margin: 'auto',
-        marginTop: '50px',
-        backgroundColor: '#fff',
+        marginTop: '300px',
+        backgroundColor: '#808080',
       }}
     >
       
       <div style={{ width: '100%' }}>
-      <h3 style={{ textAlign: 'center', marginTop: '10px' }}>Historia Transakcji</h3>
+      <h3 style={{ textAlign: 'center', marginTop: '-100px' }}>Historia Transakcji</h3>
         <ul>
           {transactions.map((transaction, index) => (
             <li key={index}>{transaction}</li>
