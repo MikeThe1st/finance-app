@@ -12,7 +12,6 @@ import CalendarForm from './pages/CalendarForm.jsx'
 
 
 function App() {
-  const userTransactionHistory = ['Transakcja 1', 'Transakcja 2', 'Transakcja 3'];
   return (
     <BrowserRouter>
       <Routes>
