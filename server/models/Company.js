@@ -4,6 +4,7 @@ const CompanySchema = new mongoose.Schema(
     {
         _id: { type: mongoose.Types.ObjectId },
         name: { type: String, required: true },
+        name: { type: String },
         type: {type: String},
         rating: {type: Number},
         availableDates: {
