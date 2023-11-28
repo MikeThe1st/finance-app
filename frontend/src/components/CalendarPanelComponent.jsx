@@ -2,7 +2,6 @@ import React from 'react';
 
 const CalendarPanelComponent = () => {
     const panelStyle = {
-        position: 'absolute',
         width: '1920px',
         height: '177px',
         left: '0px',
@@ -13,6 +12,7 @@ const CalendarPanelComponent = () => {
         justifyContent: 'center',
         color: '#000', 
         fontSize: '36px', 
+        margin: 'auto',
   };
 
   return (
