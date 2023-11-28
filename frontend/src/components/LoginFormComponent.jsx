@@ -18,7 +18,10 @@ const LoginFormComponent = () => {
     e.preventDefault();
 
     await axios.post('http://localhost:3000/backend/user/login', formData, { withCredentials: true }).then(response => {
-      console.log(response.data)
+      if(response.data.msg === 'Login success.') {
+        alert(response.data.msg)
+        window.location = '/'
+      }
     })
       .catch(error => {
         // alert(error.response.data.msg)

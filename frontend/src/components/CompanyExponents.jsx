@@ -1,41 +1,47 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import CompanyInfo from './SingleCompany';
+import axios from 'axios';
+import img from '../assets/advisor1.png';
 
 const CompanyExponets = () => {
-  const companies = [
-    {
-      companyName: 'Biuro Progressive',
-      imageUrl: 'url_do_zdjecia_1',
-      price: '$100',
-    },
-    {
-      companyName: 'Better Call Saul',
-      imageUrl: 'url_do_zdjecia_2',
-      price: '$120',
-    },
-    {
-      companyName: 'Company C',
-      imageUrl: 'url_do_zdjecia_3',
-      price: '$90',
-    },
-    {
-      companyName: 'Company D',
-      imageUrl: 'url_do_zdjecia_4',
-      price: '$110',
-    },
-  ];
+  const [companies, setCompanies] = useState([])
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/backend/companies')
+        console.log(response.data)
+        setCompanies(response.data)
+        setIsLoading(false)
+      } catch (error) {
+        console.error(error)
+      }
+    };
+
+    fetchData()
+  }, [])
 
   return (
     <div>
-      {companies.map((company, index) => (
-        <CompanyInfo
-          key={index}
-          companyName={company.companyName}
-          imageUrl={company.imageUrl}
-          price={company.price}
-        />
-      ))}
+      {
+        isLoading ? (
+          <div className='h-20 bg-green-800 text-black items-center justify-center flex text-3xl'>
+            Loading...
+          </div>
+        ) :
+          (
+            companies.map((company, index) => (
+              <CompanyInfo
+                key={index}
+                companyName={company.name}
+                imageUrl={img}
+                price={company.price}
+              />
+            ))
+          )
+      }
+
     </div>
   );
 };
