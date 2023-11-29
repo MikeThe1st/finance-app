@@ -13,11 +13,11 @@ const Info = () => {
       </p>
       <h3 className="text-3xl mb-4">Plany się zmieniły?</h3>
       <p className="text-lg mb-6">
-        Bez problemu możesz zarządzać swoimi wizytami, gdziekolwiek jesteś. Odwołaj rezerwacje lub zmień jej termin kilkoma kliknięciami.
+        Bez problemu możesz zarządzać swoimi wizytami, gdziekolwiek jesteś. Odwołaj rezerwację kilkoma kliknięciami.
       </p>
       <h3 className="text-3xl mb-4">Najlepsi specjaliści</h3>
       <p className="text-lg">
-        Na DoradcyOnline znajdziesz najlepszych specjalistów danych dziedzinach doradctwa finansowego. Możesz się dowiedzieć o nich więcej dzięki opiniom innych klientów i zostawionych przez nich ocenom.
+        Na DoradcyOnline znajdziesz najlepszych specjalistów dziedzinach doradctwa finansowego. Możesz się dowiedzieć o nich więcej dzięki opiniom innych klientów i zostawionych przez nich ocenom.
       </p>
     </section>
   );

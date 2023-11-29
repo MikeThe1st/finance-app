@@ -3,7 +3,8 @@ import companyImage from '../assets/advisor1.png';
 import axios from 'axios';
 
 const YourCompanyComponent = () => {
-  const url = 'http://localhost:5173/company-form?company=testCompany';
+  const url = window.location.href
+  // const url = 'http://localhost:5173/company-form?company=testCompany';
   const companyName = url.slice(url.indexOf('=') + 1);
 
   const [company, setCompany] = useState(null);
@@ -47,7 +48,7 @@ const YourCompanyComponent = () => {
           </p>
 
           <button style={{ marginTop: '20px', marginBottom: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#3498db', color: '#fff', borderRadius: '5px', cursor: 'pointer' }}>
-            Przejdź do kalendarza
+            Umów wizytę
           </button>
         </div>
       )}
