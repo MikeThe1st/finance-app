@@ -29,8 +29,12 @@ export const recomendedCompanies = async (req, res) => {
     try {
         const companiesWithRecommended = await Company.find({ recommended: { $exists: true } })
         let recomendedCompanies = []
+        let counter = 0
         companiesWithRecommended.map((company) => {
-            if(company.recommended) recomendedCompanies.push(company)
+            if(company.recommended && counter < 3) {
+                recomendedCompanies.push(company)
+                counter++
+            }
         })
 
         return res.status(200).json(recomendedCompanies)

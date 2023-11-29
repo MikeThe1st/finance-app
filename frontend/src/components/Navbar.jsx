@@ -1,24 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import { getCookie } from '../utils/cookie';
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isLogged, setIsLogged] = useState(false)
 
   useEffect(() => {
-    const getCookie = (name) => {
-      const cookieArray = document.cookie.split(';')
-      for (let i = 0; i < cookieArray.length; i++) {
-        const cookie = cookieArray[i].trim()
-        if (cookie.startsWith(name + '=')) {
-          return cookie.substring(name.length + 1)
-        }
-      }
-      return null;
-    }
+    
+    const myCookie = getCookie('token')
 
-    const myCookieValue = getCookie('token')
-
-    if (myCookieValue) {
+    if (myCookie) {
       setIsLogged(true)
     } else {
       console.log('Cookie not found')
@@ -53,7 +44,7 @@ const Navbar = () => {
                 <a href="/">Strona główna</a>
               </li>
               <li className="hover:text-green-600 font-bold text-2xl">
-                <a href="/company-list">Znajdź Usługę</a>
+                <a href="/companies">Znajdź Usługę</a>
               </li>
               <li className="hover:text-green-600 font-bold text-2xl">
                 <a href="/services-info">Usługi</a>
