@@ -8,7 +8,7 @@ const mainRouter = express.Router()
 
 mainRouter.post('/user/register', register)
 mainRouter.post('/user/login', login)
-mainRouter.post('/user', getUser)
+mainRouter.get('/user', getUser)
 mainRouter.get('/user/auth', userVerification)
 mainRouter.post('/user/new-transaction', newTransaction)
 

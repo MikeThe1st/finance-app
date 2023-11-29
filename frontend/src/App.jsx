@@ -20,10 +20,10 @@ function App() {
         <Route element={<Contact/>} path="/contact"/>
         <Route element={<RegisterForm/>} path="/register"/>
         <Route element={<LoginForm/>} path="/login"/>
-        <Route element={<UserForm/>} path='/user-form'/>
-        <Route element={<CompanyForm/>} path='/company-form'/>
-        <Route element={<CompanyList/>} path='/company-list'/>
-        <Route element={<CalendarForm/>} path='/calendar-form'/>
+        <Route element={<UserForm/>} path='/user'/>
+        <Route element={<CompanyForm/>} path='/company'/>
+        <Route element={<CompanyList/>} path='/companies'/>
+        <Route element={<CalendarForm/>} path='/reserve-visit'/>
 
       </Routes>
     </BrowserRouter>

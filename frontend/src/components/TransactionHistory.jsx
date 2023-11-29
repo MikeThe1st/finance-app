@@ -1,34 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 
 const TransactionHistory = ({ transactions }) => {
 
-
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '30vh',
-        width: '40%',
-        border: '2px solid #ccc',
-        borderRadius: '10px',
-        padding: '20px',
-        margin: 'auto',
-        marginTop: '300px',
-        backgroundColor: '#808080',
-      }}
-    >
-      
-      <div style={{ width: '100%' }}>
-      <h3 style={{ textAlign: 'center', marginTop: '-100px' }}>Historia Transakcji</h3>
-        <ul>
-          {transactions.map((transaction, index) => (
-            <li key={index}>{transaction}</li>
-          ))}
-        </ul>
-      </div>
+    <div className="flex flex-col items-center justify-center h-1/3 w-11/12 md:w-2/5 border-2 border-gray-300 rounded-lg p-8 mx-auto mt-24 bg-gray-800">
+      <h3 className="text-center text-white text-2xl mb-4">Historia Transakcji</h3>
+      <ul className="w-full">
+        {transactions.map((transaction, index) => (
+          <li key={index} className="text-white mb-2">
+            {transaction}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
