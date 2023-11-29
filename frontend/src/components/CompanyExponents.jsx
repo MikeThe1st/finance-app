@@ -31,14 +31,20 @@ const CompanyExponets = () => {
           </div>
         ) :
           (
-            companies.map((company, index) => (
-              <CompanyInfo
-                key={index}
-                companyName={company.name}
-                imageUrl={img}
-                price={company.price}
-              />
-            ))
+            <div className='bg-gray-800 flex flex-row flex-wrap gap-10 mt-20 mb-40 py-10'>
+              {
+                companies.map((company, index) => (
+                  <CompanyInfo
+                    key={index}
+                    companyName={company.name}
+                    imageUrl={img}
+                    price={company.price}
+                    rating={company.rating}
+                    type={company.type}
+                  />
+                ))
+              }
+            </div>
           )
       }
 
