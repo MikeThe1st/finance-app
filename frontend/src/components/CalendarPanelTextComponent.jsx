@@ -4,7 +4,7 @@ const CalendarPanelTextComponent = () => {
 
   return (
     <div className='flex flex-col w-26 items-center mx-auto my-16'>
-      <div className='bg-[#BD9191] text-3xl font-semibold m-6 p-4'>
+      <div className='bg-[#BD9191] text-2xl font-semibold m-6 p-4'>
         Wybierz dostępny termin
       </div>
       <div className='bg-[#BD9191] text-2xl font-semibold m-4 p-2'>
