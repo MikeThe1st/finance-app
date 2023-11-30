@@ -2,10 +2,10 @@ import React from 'react';
 
 const CircleWithMailComponent = ({ user }) => {
 
-  const firstLetter = user.name.charAt(0).toUpperCase();
-
+  const firstLetter = user?.name.charAt(0).toUpperCase();
   return (
-    <div className="flex flex-col items-center mt-8">
+    user ? (
+      <div className="flex flex-col items-center mt-8">
       <div className="w-32 h-32 bg-green-900 rounded-full flex items-center justify-center text-white text-4xl font-bold mb-6">
         {firstLetter}
       </div>
@@ -16,6 +16,10 @@ const CircleWithMailComponent = ({ user }) => {
      
       <p className="text-xl text-white font-semibold">{user.email}</p>
     </div>
+    ) : (
+      window.location = '/login'
+    )
+
   );
 };
 
