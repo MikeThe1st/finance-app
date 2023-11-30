@@ -1,23 +1,15 @@
 import React from 'react';
 
-const CalendarPanelComponent = () => {
-    const panelStyle = {
-        width: '1920px',
-        height: '177px',
-        left: '0px',
-        top: '248px',
-        background: '#BD9191',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: '#000', 
-        fontSize: '36px', 
-        margin: 'auto',
-  };
+const CalendarPanelComponent = ({name, price}) => {
 
   return (
-    <div style={panelStyle}>
-      Panel Kalendarz
+    <div className='flex flex-col h-fit p-8 w-3/4 bg-[#BD9191] text-4xl font-semibold mx-auto items-center justify-center gap-6'>
+      <div>
+        {`Rezerwacja spotkania w ${name}`}
+      </div>
+      <div>
+        Cena za spotkanie: {price}$
+      </div>
     </div>
   );
 };
