@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { getCookie } from '../utils/cookie';
+import axios from 'axios';
 
 const Navbar = () => {
   const [isNavOpen, setIsNavOpen] = useState(false)
   const [isLogged, setIsLogged] = useState(false)
+  const [user, setUser] = useState(undefined)
 
   useEffect(() => {
-    
-    const myCookie = getCookie('token')
+    const getUser = async () => {
+      const response = await axios.get('http://localhost:3000/backend/user', {withCredentials: true})
+      setUser(response.data[0])
+    }
 
+    const myCookie = getCookie('token')
     if (myCookie) {
       setIsLogged(true)
     } else {
       console.log('Cookie not found')
     }
+
+    getUser()
   }, [isLogged])
 
   const toggleNav = () => {
@@ -23,6 +30,7 @@ const Navbar = () => {
   const logout = (name) => {
     document.cookie = `${name}=; expires=Thu, 01 Jan 2023 00:00:00 GMT; path=/`
     setIsLogged(false)
+    window.location.href = '/login'
   }
 
   return (
@@ -54,9 +62,10 @@ const Navbar = () => {
               </li>
               {
                 isLogged ? (
-                  <div>
+                  <div className='flex flex-col lg:flex-row gap-20'>
+                    <button className='text-2xl font-bold text-yellow-600' onClick={() => window.location ='/user'}>{user?.email}</button>
                     <button className='text-2xl font-bold text-red-800' onClick={() => logout('token')}>
-                      Logout
+                      Wyloguj
                     </button>
                   </div>
                 ) :

@@ -32,8 +32,8 @@ const YourCompanyComponent = () => {
         <div>Loading...</div>
       ) : (
         <div className='flex flex-col items-center text-white'>
-          <div className='text-4xl mb-6'>{company.name}</div>
-          <div className='text-2xl mb-4 flex-flex-row'>Rating: <span className='text-green-700 font-bold'>{`${company.rating}/5`}</span></div>
+          <div className='text-4xl mb-6'>{company?.name}</div>
+          <div className='text-2xl mb-4 flex-row'>Rating: <span className='text-green-700 font-bold'>{`${company?.rating}/5`}</span></div>
           <img
             src={companyImage}
             alt="Zdjęcie Firmy"
@@ -44,10 +44,10 @@ const YourCompanyComponent = () => {
           />
 
           <p style={{ marginTop: '20px', fontSize: '18px', color: '#fff', whiteSpace: 'pre-line' }} className='max-w-xl m-2'>
-            {company.description}
+            {company?.description}
           </p>
 
-          <button style={{ marginTop: '20px', marginBottom: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#3498db', color: '#fff', borderRadius: '5px', cursor: 'pointer' }}>
+          <button style={{ marginTop: '20px', marginBottom: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#3498db', color: '#fff', borderRadius: '5px', cursor: 'pointer' }}onClick={() => window.location = `/reserve-visit?name=${companyName}`}>
             Umów wizytę
           </button>
         </div>

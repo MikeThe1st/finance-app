@@ -6,13 +6,21 @@ import img from '../assets/advisor1.png';
 const CompanyExponets = () => {
   const [companies, setCompanies] = useState([])
   const [isLoading, setIsLoading] = useState(true)
+  const [needToFiltr, setNeedToFiltr] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3000/backend/companies')
-        console.log(response.data)
         setCompanies(response.data)
+
+        const urlParam = window.location.href.split('=')[1];
+        if(urlParam) {
+          setNeedToFiltr(true)
+        }
+        else {
+          setCompanies(response.data)
+        }
         setIsLoading(false)
       } catch (error) {
         console.error(error)
@@ -21,6 +29,24 @@ const CompanyExponets = () => {
 
     fetchData()
   }, [])
+
+  
+  useEffect(() => {
+    const urlParam = window.location.href.split('=')[1];
+    if(urlParam) {
+      const formattedParam = urlParam.split('-')[0]
+      let newArray = []
+      companies.forEach((company) => {
+        const transformedString = company.type.toLowerCase().replace(/\s+/g, '-');
+        const finalString = transformedString.split('-')[0]
+        if (formattedParam == finalString) {
+          newArray.push(company)
+        }
+        setCompanies(newArray)
+        setNeedToFiltr(false)
+      })
+    }
+  }, [needToFiltr])
 
   return (
     <div>
@@ -31,7 +57,8 @@ const CompanyExponets = () => {
           </div>
         ) :
           (
-            <div className='bg-gray-800 flex flex-row flex-wrap gap-10 mt-20 mb-40 py-10'>
+            companies ? (
+              <div className='bg-gray-800 flex flex-row flex-wrap gap-10 mt-20 mb-40 py-10'>
               {
                 companies.map((company, index) => (
                   <CompanyInfo
@@ -45,6 +72,11 @@ const CompanyExponets = () => {
                 ))
               }
             </div>
+            ) :
+            (
+              <div className='text-4xl text-white'>Loading...</div>
+            )
+           
           )
       }
 

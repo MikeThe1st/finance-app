@@ -15,7 +15,8 @@ const CalendarForm = () => {
     useEffect(() => {
         const getCompany = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/backend/company?name=testCompany')
+                const companyName = window.location.href.split('=')[1]
+                const response = await axios.get(`http://localhost:3000/backend/company?name=${companyName}`)
                 setCompany(response.data)
                 setIsLoading(false)
             } catch (error) {
