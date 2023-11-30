@@ -7,12 +7,12 @@ const UserSchema = new mongoose.Schema(
         password: { type: String, required: true, min: 5 },
         name: { type: String, required: true },
         surname: { type: String, required: true },
+        dates: { type: [Boolean] },
         transactions: {
             _id: { type: mongoose.Types.ObjectId },
             company: { type: String },
             cost: { type: Number },
-            date: { type: Date },
-            description: { type: String }
+            date: { type: Date }
         }
     }
 )
