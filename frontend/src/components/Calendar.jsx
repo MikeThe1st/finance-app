@@ -80,7 +80,10 @@ const CalendarPanelComponent = ({ dates, companyName }) => {
     const postReservation = async () => {
         const postData = { date: selectedDate, name: companyName }
         const {data} = await axios.post('http://localhost:3000/backend/user/new-transaction', postData, {withCredentials: true})
-        console.log(data)
+        if(data) {
+            alert('Wizyta zarezerwowana.')
+            window.location.href = '/user'
+        }
     }
 
 
