@@ -42,7 +42,7 @@ const RecommendedCompanies = () => {
     ) :
     (
 <section className="text-center py-10 bg-green-900 text-white">
-      <h2 className="text-5xl mb-12">Polecane firmy</h2>
+      <h2 className="text-3xl md:text-5xl mb-6 md:mb-12">Polecane firmy</h2>
       <div className="advisor-container flex flex-wrap justify-center">
         {companies.map((company) => (
           <Company key={company.name} {...company} />
