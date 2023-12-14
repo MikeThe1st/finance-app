@@ -73,13 +73,15 @@ const CompanyExponets = () => {
               <div className='bg-gray-800 flex flex-row flex-wrap gap-10 mt-20 mb-40 py-10'>
               {
                 companies.map((company, index) => {
-                  const matchedType = types.find((type) => type.name === company.type)
+                  console.log(company)
+                  const matchedType = types.find((el) => el.name === company.type)
+                  console.log(matchedType)
                 
                   return (
                     <CompanyInfo
                       key={index}
                       companyName={company.name}
-                      imageUrl={matchedType ? matchedType.image : ''}
+                      imageUrl={matchedType.image}
                       price={company.price}
                       rating={company.rating}
                       type={company.type}

@@ -64,7 +64,11 @@ const Navbar = () => {
                 isLogged ? (
                   <div className='flex flex-col lg:flex-row gap-20'>
                     <button className='text-2xl font-bold text-yellow-600' onClick={() => window.location ='/user'}>{user?.email}</button>
-                    <button className='text-2xl font-bold text-red-800' onClick={() => logout('token')}>
+                    <button className='text-2xl font-bold text-red-800' onClick={() => {
+                      if(confirm('Czy na pewno chcesz się wylogować?') == true) {
+                        logout('token')
+                      }
+                    }}>
                       Wyloguj
                     </button>
                   </div>

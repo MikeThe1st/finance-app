@@ -29,7 +29,8 @@ const YourCompanyComponent = () => {
         const response = await axios.get(`http://localhost:3000/backend/company?name=${companyName}`)
         setCompany(response.data)
         setIsLoading(false)
-        setCompanyImg(types.find((type) => type.name === company.type))
+        const { image } = types.find((type) => type.name === company.type)
+        setCompanyImg(image)
       } catch (error) {
         console.error(error)
         setIsLoading(false)
@@ -45,15 +46,17 @@ const YourCompanyComponent = () => {
       {isLoading ? (
         <div>Loading...</div>
       ) : (
-        <div className='flex flex-col items-center text-white'>
-          <div className='text-4xl mb-6'>{company?.name}</div>
-          <div className='text-2xl mb-4 flex-row'>Rating: <span className='text-green-700 font-bold'>{`${company?.rating}/5`}</span></div>
+        <div className='flex flex-col items-center text-white gap-10'>
+          <div className='mt-8 sm:mt-0'>
+            <div className='text-4xl mb-6'>{company?.name}</div>
+            <div className='text-2xl mb-12 flex-row'>Rating: <span className='text-green-700 font-bold'>{`${company?.rating}/5`}</span></div>
+          </div>
           <img
-            src={companyImg}
+            src={companyImg || ''}
             alt="Zdjęcie Firmy"
             style={{
-              width: '90%',
-              height: '90%',
+              width: '20rem',
+              height: '20rem',
             }}
           />
 
@@ -61,7 +64,7 @@ const YourCompanyComponent = () => {
             {company?.description}
           </p>
 
-          <button style={{ marginTop: '20px', marginBottom: '20px', padding: '10px 20px', fontSize: '16px', backgroundColor: '#3498db', color: '#fff', borderRadius: '5px', cursor: 'pointer' }}onClick={() => window.location = `/reserve-visit?name=${companyName}`}>
+          <button style={{ marginTop: '20px', marginBottom: '20px', padding: '10px 20px', fontSize: '16px', color: '#fff', borderRadius: '5px', cursor: 'pointer' }} onClick={() => window.location = `/reserve-visit?name=${companyName}`} className='bg-green-700'>
             Umów wizytę
           </button>
         </div>
