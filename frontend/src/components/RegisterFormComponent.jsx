@@ -25,17 +25,18 @@ const RegisterForm = () => {
         await axios.post('http://localhost:3000/backend/user/register', formData)
         .then(response => {
             console.log(response.data)
+            alert('Konto zostało utworzone. Możesz się zalogować.')
+            window.location.href = '/login'
+            setFormData({
+                name: '',
+                surname: '',
+                email: '',
+                password: '',
+                repeatPassword: '',
+            })
         })
         .catch(error => {
             alert(error.response.data.msg)
-        })
-
-        setFormData({
-            name: '',
-            surname: '',
-            email: '',
-            password: '',
-            repeatPassword: '',
         })
     }
 
