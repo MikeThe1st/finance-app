@@ -11,12 +11,6 @@ const app = express()
 const appPort = process.env.APP_PORT || 3000
 const mongoURL = process.env.MONGOOSE_CONNECT
 
-// const corsOptions = {
-//   origin: 'http://localhost:5173',
-//   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE, OPTIONS',
-//   credentials: true,
-// }
-// app.use(cors(corsOptions))
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }))
 
 app.use(express.json())
