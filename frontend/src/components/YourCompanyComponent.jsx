@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import companyImage from '../assets/advisor1.png';
 import axios from 'axios';
+
+import pig from '../assets/pig.png';
+import chart from '../assets/chart.png';
+import wallet from '../assets/wallet.png';
+import head from '../assets/head.webp';
+import bank from '../assets/bank.webp';
+
+const types = [
+  { name: 'Doradztwo Inwestycyjne', image: chart },
+  { name: 'Planowanie emerytalne', image: head },
+  { name: 'Kredyty i Pożyczki', image: bank },
+  { name: 'Podatki i rozliczenia', image: pig },
+  { name: 'Analiza portfela inwestycyjnego', image: wallet }
+]
 
 const YourCompanyComponent = () => {
   const url = window.location.href
-  // const url = 'http://localhost:5173/company-form?company=testCompany';
   const companyName = url.slice(url.indexOf('=') + 1);
 
   const [company, setCompany] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [companyImg, setCompanyImg] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +29,7 @@ const YourCompanyComponent = () => {
         const response = await axios.get(`http://localhost:3000/backend/company?name=${companyName}`)
         setCompany(response.data)
         setIsLoading(false)
+        setCompanyImg(types.find((type) => type.name === company.type))
       } catch (error) {
         console.error(error)
         setIsLoading(false)
@@ -35,7 +49,7 @@ const YourCompanyComponent = () => {
           <div className='text-4xl mb-6'>{company?.name}</div>
           <div className='text-2xl mb-4 flex-row'>Rating: <span className='text-green-700 font-bold'>{`${company?.rating}/5`}</span></div>
           <img
-            src={companyImage}
+            src={companyImg}
             alt="Zdjęcie Firmy"
             style={{
               width: '90%',

@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 
+import {getCookie} from '../utils/cookie.js'
+
 const possibleHours = ['08:00', '11:00', '14:30', '16:00']
 
 const CalendarPanelComponent = ({ dates, companyName }) => {
     const [selectedDate, setSelectedDate] = useState(undefined)
     const [selectedHour, setSelectedHour] = useState(undefined)
+    const [cookie, setCookie] = useState(undefined)
 
     useEffect(() => {
         generateCalendar(2023, 11);
+        setCookie(getCookie("token"))
     }, []);
 
     useEffect(() => {
@@ -130,7 +134,14 @@ const CalendarPanelComponent = ({ dates, companyName }) => {
                     </div>
                 </div>
             </div>
-            <button className={`h-20 w-40  rounded-md mx-auto ${selectedDate && (selectedHour || selectedHour == 0) ? 'bg-green-700 hover:bg-green-800' : 'bg-red-700 opacity-70 cursor-not-allowed'}`} onClick={() => postReservation()}>Rezerwuj</button>
+            <button className={`h-20 w-40 sm:my-4 mb-6 rounded-md mx-auto ${selectedDate && (selectedHour || selectedHour == 0) ? 'bg-green-700 hover:bg-green-800' : 'bg-red-700 opacity-70 cursor-not-allowed'}`} onClick={() => {
+                if(cookie) {
+                    if(selectedDate && (selectedHour || selectedHour == 0)) postReservation()
+                    else alert('Wybierz datę i godzinę')
+                }
+                else alert('Zaloguj się, aby umówić się na wizytę.')
+            }  
+            }>Rezerwuj</button>
         </div>
     );
 };
@@ -154,7 +165,8 @@ const DropdownElement = ({ number, setHour, setDropdown }) => {
 const DropdownComponent = ({ dates, selectedDate, setSelectedHour }) => {
     const [isDropdownVisible, setDropdownVisible] = useState(false)
 
-    const toggleDropdown = () => {
+    const toggleDropdown = (e) => {
+        e.preventDefault()
         setDropdownVisible(!isDropdownVisible);
     }
 
