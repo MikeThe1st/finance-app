@@ -9,14 +9,16 @@ const TransactionHistory = ({ transactions }) => {
         <h3 className="text-center text-white text-2xl mb-4">Historia Transakcji</h3>
         <ul className="w-full flex flex-col flex-wrap justify-center items-center text-white">
           {transactions.map((transaction, index) => {
-            const formattedDate = transaction.date.split('T')[0]
+            const date = transaction.date.split('T')[0]
+            const hour = transaction.date.split('T')[1].split(':')
             return (
               <li className='text-center m-4' key={`transaction ${index+1}`}>
                 <div className='text-bold text-xl text-green-700'>{`Transakcja ${index+1}`}</div>
                 <div className='flex flex-row text-lg gap-3'>
                   <div>{`Firma: ${transaction.company}`}</div>
                   <div>{`Koszt: ${transaction.cost}$`}</div>
-                  <div>{`Data: ${formattedDate}`}</div>
+                  <div>{`Data: ${date}`}</div>
+                  <div>{`Godzina: ${hour[0]}:${hour[1]}`}</div>
                 </div>
               </li>
             )
@@ -26,7 +28,7 @@ const TransactionHistory = ({ transactions }) => {
     ) :
       (
        <div className='text-white text-4xl mx-auto justify-center flex m-16'>
-          <div>Nie masz jeszcze żadnej transakcji!</div>
+          <div>Nie masz jeszcze żadnej umówionej wizyty!</div>
        </div>
       )
 

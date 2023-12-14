@@ -37,7 +37,8 @@ const CompanySchema = new mongoose.Schema(
       recommended: { type: Boolean },
       description: { type: String },
       price: { type: Number },
-      dates: { type: [Boolean] },
+      // dates: { type: [Boolean] },
+      dates: { type: Array },
     },
     { timestamps: true }
   )
