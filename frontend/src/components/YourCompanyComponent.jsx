@@ -29,7 +29,7 @@ const YourCompanyComponent = () => {
         const response = await axios.get(`http://localhost:3000/backend/company?name=${companyName}`)
         setCompany(response.data)
         setIsLoading(false)
-        const { image } = types.find((type) => type.name === company.type)
+        const { image } = types.find((type) => type.name === response.data.type)
         setCompanyImg(image)
       } catch (error) {
         console.error(error)
